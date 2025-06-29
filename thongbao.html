@@ -1,30 +1,43 @@
-<!-- thongbao.html - Trang thông báo hệ thống --><!DOCTYPE html><html lang="vi">
+<!-- index.html - Trang nạp thẻ (giao diện cập nhật) --><!DOCTYPE html><html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thông báo - Thecao.vn</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nạp thẻ - Thecao.vn</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Thecao.vn</h1>
     <button id="menu-toggle">☰</button>
     <nav id="main-nav" class="hidden">
-      <a href="index.html">Nạp thẻ</a>
+      <a href="index.html" class="active">Nạp thẻ</a>
       <a href="ruttien.html">Rút tiền</a>
       <a href="taikhoan.html">Tài khoản</a>
       <a href="huongdan.html">Hướng dẫn</a>
-      <a href="thongbao.html" class="active">Thông báo</a>
+      <a href="thongbao.html">Thông báo</a>
     </nav>
   </header>  <main>
-    <h2>📢 Thông báo từ hệ thống</h2>
-    <ul>
-      <li>🛠️ Bảo trì hệ thống lúc 23:00 hằng ngày</li>
-      <li>💰 Phí nạp theo nhà mạng, xem chi tiết trong mục nạp thẻ</li>
-      <li>⚠️ Không hoàn tiền nếu nhập sai mã thẻ</li>
-      <li>🚀 Tăng tốc xử lý giao dịch từ ngày 1/7/2025</li>
-    </ul>
+    <h2>🔁 Nạp thẻ cào</h2>
+    <form id="formNap">
+      <select id="telco">
+        <option value="VIETTEL">Viettel (4.8%)</option>
+        <option value="MOBIFONE">Mobifone (7.8%)</option>
+        <option value="VINAPHONE">Vinaphone (7.8%)</option>
+        <option value="ZING">Zing (9%)</option>
+        <option value="GARENA">Garena</option>
+        <option value="VCOIN">Vcoin</option>
+        <option value="GATE">Gate</option>
+        <option value="APPOTA">Appota</option>
+      </select>
+      <input type="number" id="amount" placeholder="Mệnh giá (vd: 10000)" required />
+      <input type="text" id="serial" placeholder="Serial" required />
+      <input type="text" id="code" placeholder="Mã thẻ" required />
+      <button type="submit">Gửi thẻ</button>
+    </form>
+    <p id="result"></p>
   </main>  <footer>
     © 2025 Thecao.vn
+Thương hiệu được chứng minh bởi Not Bộ Công Thương 
+    An tâm sử dụng, tin dùng!
   </footer>  <script src="script.js"></script></body>
 </html>
