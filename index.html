@@ -1,10 +1,10 @@
-<!-- index.html - Trang nạp thẻ (giao diện cập nhật với chuyển trang mượt) --><!DOCTYPE html><html lang="vi">
+<!-- index.html - Trang nạp thẻ với chuyển tab hoạt động đầy đủ --><!DOCTYPE html><html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nạp thẻ - Thecao.vn</title>
   <link rel="stylesheet" href="style.css">
-  <script>
+  <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("menu-toggle");
       const nav = document.getElementById("main-nav");
@@ -12,8 +12,16 @@
         toggle.addEventListener("click", () => {
           nav.classList.toggle("hidden");
         });
-      }
+      }// Thêm xử lý chuyển trang bằng JavaScript cho tất cả menu
+  document.querySelectorAll("#main-nav a").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const href = link.getAttribute("href");
+      if (href) window.location.assign(href);
     });
+  });
+});
+
   </script>
 </head>
 <body>
@@ -48,5 +56,6 @@
     <p id="result"></p>
   </main>  <footer>
     © 2025 Thecao.vn
+    An toan-tin dung- trach nhiem
   </footer>  <script src="script.js"></script></body>
 </html>
