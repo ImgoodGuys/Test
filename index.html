@@ -1,61 +1,81 @@
-<!-- index.html - Trang nạp thẻ với chuyển tab hoạt động đầy đủ --><!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nạp thẻ - Thecao.vn</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thecao.vn</title>
   <link rel="stylesheet" href="style.css">
-  <script defer>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("menu-toggle");
-      const nav = document.getElementById("main-nav");
-      if (toggle && nav) {
-        toggle.addEventListener("click", () => {
-          nav.classList.toggle("hidden");
-        });
-      }// Thêm xử lý chuyển trang bằng JavaScript cho tất cả menu
-  document.querySelectorAll("#main-nav a").forEach(link => {
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      const href = link.getAttribute("href");
-      if (href) window.location.assign(href);
-    });
-  });
-});
-
-  </script>
 </head>
 <body>
   <header>
     <h1>Thecao.vn</h1>
-    <button id="menu-toggle">☰</button>
-    <nav id="main-nav" class="hidden">
-      <a href="index.html" class="active">Nạp thẻ</a>
-      <a href="ruttien.html">Rút tiền</a>
-      <a href="taikhoan.html">Tài khoản</a>
-      <a href="huongdan.html">Hướng dẫn</a>
-      <a href="thongbao.html">Thông báo</a>
+    <nav>
+      <button onclick="switchTab('napthe')">Nạp tiền</button>
+      <button onclick="switchTab('ruttien')">Rút tiền</button>
+      <button onclick="switchTab('huongdan')">Hướng dẫn</button>
+      <button onclick="switchTab('thongbao')">Thông báo</button>
     </nav>
-  </header>  <main>
-    <h2>🔁 Nạp thẻ cào</h2>
-    <form id="formNap">
-      <select id="telco">
-        <option value="VIETTEL">Viettel (4.8%)</option>
-        <option value="MOBIFONE">Mobifone (7.8%)</option>
-        <option value="VINAPHONE">Vinaphone (7.8%)</option>
-        <option value="ZING">Zing (9%)</option>
-        <option value="GARENA">Garena</option>
-        <option value="VCOIN">Vcoin</option>
-        <option value="GATE">Gate</option>
-        <option value="APPOTA">Appota</option>
-      </select>
-      <input type="number" id="amount" placeholder="Mệnh giá (vd: 10000)" required />
-      <input type="text" id="serial" placeholder="Serial" required />
-      <input type="text" id="code" placeholder="Mã thẻ" required />
-      <button type="submit">Gửi thẻ</button>
-    </form>
-    <p id="result"></p>
-  </main>  <footer>
-    © 2025 Thecao.vn
-    An toan-tin dung- trach nhiem
-  </footer>  <script src="script.js"></script></body>
+  </header>
+
+  <main>
+    <!-- Tab: Nạp tiền -->
+    <section id="napthe" class="tab">
+      <h2>Nạp thẻ cào</h2>
+      <form id="naptheForm">
+        <input type="text" name="username" placeholder="Tên tài khoản" required>
+        <select name="telco">
+          <option value="VIETTEL">Viettel</option>
+          <option value="MOBIFONE">Mobifone</option>
+          <option value="VINAPHONE">Vinaphone</option>
+          <option value="ZING">Zing</option>
+          <option value="GARENA">Garena</option>
+          <option value="VIETNAMMOBILE">Vietnamobile</option>
+        </select>
+        <input type="text" name="serial" placeholder="Số serial" required>
+        <input type="text" name="code" placeholder="Mã thẻ" required>
+        <input type="number" name="amount" placeholder="Mệnh giá" required>
+        <button type="submit">Gửi</button>
+      </form>
+      <div id="ketqua"></div>
+    </section>
+
+    <!-- Tab: Rút tiền -->
+    <section id="ruttien" class="tab" style="display:none">
+      <h2>Rút tiền</h2>
+      <form>
+        <input type="text" placeholder="Tên tài khoản">
+        <input type="text" placeholder="Số tài khoản ngân hàng hoặc ví">
+        <input type="number" placeholder="Số tiền muốn rút">
+        <button>Gửi yêu cầu</button>
+      </form>
+    </section>
+
+    <!-- Tab: Hướng dẫn -->
+    <section id="huongdan" class="tab" style="display:none">
+      <h2>Hướng dẫn</h2>
+      <ol>
+        <li>Đăng ký tài khoản, sau đó đăng nhập.</li>
+        <li>Chọn nhà mạng, nhập mã và serial thẻ, chọn mệnh giá.</li>
+        <li>Gửi yêu cầu và chờ xác nhận từ hệ thống.</li>
+        <li>Tiền sẽ được cộng vào số dư nếu thẻ hợp lệ.</li>
+      </ol>
+    </section>
+
+    <!-- Tab: Thông báo -->
+    <section id="thongbao" class="tab" style="display:none">
+      <h2>Thông báo</h2>
+      <ul>
+        <li>🔒 Bảo mật tài khoản là trách nhiệm của bạn.</li>
+        <li>⚙️ Hệ thống đang hỗ trợ nạp các nhà mạng phổ biến.</li>
+        <li>📢 Mọi thông tin liên hệ qua email: support@thecao.vn</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Thecao.vn - Nạp thẻ cào tự động bằng API Trumthe.vn</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
